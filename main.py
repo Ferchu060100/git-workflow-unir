@@ -12,10 +12,12 @@ DEFAULT_ASCENDING = True
 VALID_ORDERS = ("asc", "desc")
 
 
-def sort_list(items, ascending=True):
+def sort_list(items, ascending=True, remove_duplicates=False):
     if not isinstance(items, list):
         raise RuntimeError(f"Cannot sort {type(items)}")
-
+    
+    if remove_duplicates:
+        items = remove_duplicates_from_list(items)
     return sorted(items, reverse=(not ascending))
 
 
@@ -62,7 +64,5 @@ if __name__ == "__main__":
             "hufflepuff"
         ]
 
-    if remove_duplicates:
-        word_list = remove_duplicates_from_list(word_list)
 
-    print(sort_list(word_list, ascending))
+    print(sort_list(word_list, ascending, remove_duplicates=remove_duplicates))
